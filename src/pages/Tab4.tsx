@@ -8,7 +8,7 @@ import './Tab3.css';
 import {HTTP} from '@ionic-native/http';
 
 const Tab3: React.FC = () => {
-  const [listItems, setListItems] = useState({});
+  const [listItems, setListItems] = useState({token: ''});
   
 
   const userName = 'SwissGolfApp';
@@ -58,8 +58,9 @@ const Tab3: React.FC = () => {
        // .then(response => response.json())
         //.then(data => setListItems(data));
 
+        // cordova http call
         HTTP.post(testUrl,parameters,headers)
-        .then(response => setListItems(response.status))
+        .then(response => setListItems(response.data))
 
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
 }, []);
@@ -77,7 +78,7 @@ console.log(listItems);
       <IonList color="success">
       <IonItem>
                 <IonLabel>
-                <h3> {listItems}</h3>
+                <h3> {listItems['token']}</h3>
                 </IonLabel>
               </IonItem>
       </IonList>
